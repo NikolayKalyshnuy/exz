@@ -20,6 +20,7 @@
         <div class="col-12 text-center">
             @if (false)
                 <a class="btn btn-success" href="{{asset($instruction->filePath)}}" download>Скачать</a>
+                {{-- todo --}}
                 <a class="btn btn-warning" href="{{asset($instruction->filePath)}}" >Пожаловаться</a>
             @else
                 <h3>Зарегистрируйтесь, чтобы скачать файл</h3>

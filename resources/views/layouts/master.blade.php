@@ -27,7 +27,7 @@
                 @if (session('user', '') != '')
                     <h4>User</h4>
                 @else
-                    <a href="/login"><h4>Вход | Регистрация</h4></a>
+                    <a href="{{asset('login')}}"><h4>Вход | Регистрация</h4></a>
                 @endif
             </div>
         </div>

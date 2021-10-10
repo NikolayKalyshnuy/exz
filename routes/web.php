@@ -19,4 +19,5 @@ Route::get('/', function () {
 
 Route::resource('instruction', \App\Http\Controllers\InstructionController::class);
 Route::get('instruction/search', '\App\Http\Controllers\InstructionController@search');
-Route::resource('login', \App\Http\Controllers\UserController::class);
+Route::resource('user', \App\Http\Controllers\UserController::class);
+Route::get('login', '\App\Http\Controllers\UserController@login');

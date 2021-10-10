@@ -3,9 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <table cellpadding="5"  cellspacing="0">
+            <table cellpadding="4"  cellspacing="0">
                 <tr class="bg-secondary">
-                    <th>№</th>
                     <th>Название</th>
                     <th>Описание</th>
                     <th>Автор</th>
@@ -13,7 +12,6 @@
                 </tr>    
                 @foreach ($instructions as $instruction)
                     <tr onclick="document.location = '{{ route('instruction.show', ['instruction'=>$instruction]) }}';">
-                        <td>{{ $instruction->id }}</td>
                         <td>{{ $instruction->name }}</td>
                         <td>{{ $instruction->description }}</td>
                         <td>{{ $users[$instruction->userId] }}</td>
