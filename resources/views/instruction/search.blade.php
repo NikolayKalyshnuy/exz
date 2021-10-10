@@ -1,6 +1,11 @@
 @extends('layouts.master')
-@section('title', "Инструкции для техники")
+@section('title', "Поиск")
 @section('content')
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4>Поиск "{{ $search }}"</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <table cellpadding="5"  cellspacing="0">
@@ -12,22 +17,15 @@
                     <th>Файл</th>
                 </tr>    
                 @foreach ($instructions as $instruction)
-                    <tr onclick="document.location = '{{ route('instruction.show', ['instruction'=>$instruction]) }}';">
+                    <tr onclick="document.location = '{{ asset('') }}';" >
                         <td>{{ $instruction->id }}</td>
                         <td>{{ $instruction->name }}</td>
                         <td>{{ $instruction->description }}</td>
                         <td>{{ $users[$instruction->userId] }}</td>
-                        <td>{{explode('-',$instruction->filePath)[1] }}</td>
+                        <td>{{ $instruction->filePath }}</td>
                     </tr> 
                 @endforeach
             </table>
         </div>
     </div>
-    @if (true)
-        <div class="row">
-            <div class="col-12 text-center">
-                <a class="btn btn-success" href="{{ route('instruction.create') }}">Добавить инструкцию</a>
-            </div>
-        </div>
-    @endif
 @endsection

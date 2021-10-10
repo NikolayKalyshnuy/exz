@@ -7,23 +7,15 @@
     <meta name="description" content="Интерфейс для поиска, чтения и размещения инструкций для техники">
     <meta name="author" content="ProRock">
     <title>@yield('title')</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <style>
-        header, main, footer {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-        a {
-            color: black;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
     <header class="container bg-primary">
         <div class="row">
             <div class="col-3">
-                <a href=""><h4>Главная</h4></a>
+                <a href="{{asset('')}}"><i class="fas fa-home icon"></i></a>
             </div>
             <div class="col-6">
                 <form class="input-group" method="get" action="{{asset('search')}}">
@@ -50,6 +42,7 @@
             </div>
         </div>
     </footer>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 </body>
 </html>

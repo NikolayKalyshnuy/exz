@@ -15,7 +15,8 @@ class InstructionController extends Controller
      */
     public function index()
     {
-        $instructions = Instruction::query()->where('verified', true)->get();
+        $instructions = Instruction::all();
+        // $instructions = Instruction::query()->where('verified', true)->get();
         $users = User::pluck('login', 'id');
         return view('instruction.index', ['instructions'=>$instructions, 'users'=>$users]);
     }
@@ -27,7 +28,9 @@ class InstructionController extends Controller
      */
     public function create()
     {
-        //
+        $instruction = new Instruction();
+
+        return view('instruction.create', ['instruction'=>$instruction]);
     }
 
     /**
@@ -38,7 +41,21 @@ class InstructionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $instruction = new Instruction();
+        $instruction->name = $request->name;
+        $instruction->description = $request->description;
+        $request->validate(['name'=>'required']);
+        $request->validate(['filePath'=>'required']);
+        $requestFile = $request->file('filePath');
+        if($requestFile != null){
+            $request->validate(['filePath'=>'mimes:txt']);
+            $originalName = time() . '-'. $requestFile->getClientOriginalName();
+            $requestFile->move(public_path() . '/storage', $originalName);
+            $instruction->filePath = '/storage/' . $originalName;
+        }
+        $instruction->userId = 1;
+        $instruction->save();
+        return view('instruction.store', ['instruction'=>$instruction]);
     }
 
     /**
@@ -49,7 +66,9 @@ class InstructionController extends Controller
      */
     public function show($id)
     {
-        //
+        $instruction = Instruction::query()->where('id', $id)->first();
+        $user = $instruction->user;
+        return view('instruction.show', ['instruction'=>$instruction, 'user'=>$user]);
     }
 
     /**
@@ -86,15 +105,16 @@ class InstructionController extends Controller
         //
     }
 
-    protected function find(Request $request)
+    public function search(Request $request)
     {
         $search = $request->searchText;
         $instructions = Instruction::query()->where('name', 'like', '%'.$search.'%')->get();
-        $instructions = $instructions->reject(function($instruction) {
-            return $instruction->cancelled;
-        });
-        foreach($instructions as $instruction)
-            echo $instruction->name;
-        return view('search.search');
+        // $instructions = $instructions->reject(function($instruction) {
+        //     return $instruction->cancelled;
+        // });
+        // foreach($instructions as $instruction)
+        //     echo $instruction->name;
+        $users = User::pluck('login', 'id');
+        return view('instruction.search', ['instructions'=>$instructions, 'users'=>$users, 'search'=>$search]);
     }
 }

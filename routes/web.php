@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+    return redirect('/instruction');
+});
 
-Route::resource('/', \App\Http\Controllers\InstructionController::class);
-Route::resource('/login', \App\Http\Controllers\UserController::class);
+Route::resource('instruction', \App\Http\Controllers\InstructionController::class);
+Route::get('instruction/search', '\App\Http\Controllers\InstructionController@search');
+Route::resource('login', \App\Http\Controllers\UserController::class);

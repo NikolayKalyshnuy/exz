@@ -20,4 +20,8 @@ class Instruction extends Model
         'created_at',
         'updeted_at'
     ];
+
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'userId');
+    }
 }
