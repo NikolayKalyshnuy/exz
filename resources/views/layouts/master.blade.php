@@ -11,7 +11,17 @@
 </head>
 <body>
     <header class="container">
-
+        <div class="row">
+            <div class="col-1">
+                1
+            </div>
+            <div class="col-5">
+                2
+            </div>
+            <div class="col-6">
+                3
+            </div>
+        </div>
     </header>
     <main class="container">
         @yield('content')
