@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();
+        return view('user/create', ['user'=>$user]);
     }
 
     /**
@@ -35,7 +36,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['login'=>'required']);
+        $request->validate(['login'=>'min:5']);
+        $request->validate(['password'=>'required']);
+        $request->validate(['password'=>'min:8']);
+        $request->validate(['confirmPassword'=>'required']);
+        $request->validate(['confirmPassword'=>'min:8']);
+        $user = User::query()->where('login', $request->login)->first();
+        if ($user != null)
+            return view('user/error', ['message'=>'Пользователь с таким логином уже зарегестрирован!']);
+        $user = new User();
+        $user->login = $request->login;
+        $user->password = $request->password;
+        if ($user->password != $request->confirmPassword)
+            return view('user/error', ['message'=>'Пароли не совпадают!']);
+        $user->save();
+        session(['user'=>$user->login]);
+        return redirect()->action("\App\Http\Controllers\InstructionController@index");
     }
 
     /**
@@ -87,5 +104,33 @@ class UserController extends Controller
     {
         $user = new User();
         return view('user/login', ['user'=>$user]);
+    }
+
+    public function logout()
+    {
+        session(['user'=>null]);
+        return redirect()->action("\App\Http\Controllers\InstructionController@index");
+    }
+
+    public function loginHandler(Request $request)
+    {
+        $user = User::query()->where('login', $request->login)->first();
+
+        $request->validate(['login'=>'required']);
+        $request->validate(['password'=>'required']);
+
+        if ($user != null)
+        {
+            if ($request->password != $user->password)
+            {
+                return view('user/error', ['message'=>'Не верный пароль!']);
+            }
+            else
+            {
+                session(['user'=>$user->login]);
+                return redirect()->action("\App\Http\Controllers\InstructionController@index");
+            }
+        }
+        return view('user/error', ['message'=>'Пользователя с таким логином не зарегестрированно!']);
     }
 }

@@ -21,7 +21,7 @@
             </table>
         </div>
     </div>
-    @if (true)
+    @if (session('user'))
         <div class="row">
             <div class="col-12 text-center">
                 <a class="btn btn-success" href="{{ route('instruction.create') }}">Добавить инструкцию</a>

@@ -53,7 +53,8 @@ class InstructionController extends Controller
             $requestFile->move(public_path() . '/storage', $originalName);
             $instruction->filePath = '/storage/' . $originalName;
         }
-        $instruction->userId = 1;
+        $user = User::query()->where('login', session('user'))->first();
+        $instruction->userId = $user->id;
         $instruction->save();
         return view('instruction.store', ['instruction'=>$instruction]);
     }

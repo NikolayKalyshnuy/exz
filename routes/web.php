@@ -17,7 +17,9 @@ Route::get('/', function () {
     return redirect('/instruction');
 });
 
-Route::resource('instruction', \App\Http\Controllers\InstructionController::class);
+Route::get('user/logout', '\App\Http\Controllers\UserController@logout');
+Route::get('user/login', '\App\Http\Controllers\UserController@login');
+Route::post('user/login', '\App\Http\Controllers\UserController@loginHandler');
 Route::get('instruction/search', '\App\Http\Controllers\InstructionController@search');
+Route::resource('instruction', \App\Http\Controllers\InstructionController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class);
-Route::get('login', '\App\Http\Controllers\UserController@login');

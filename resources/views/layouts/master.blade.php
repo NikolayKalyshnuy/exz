@@ -23,11 +23,18 @@
                     <input class="btn btn-success" type="submit" value="Поиск">
                 </form>
             </div>
-            <div class="col-3 d-flex justify-content-end">
+            <div class="col-3 d-flex justify-content-around">
                 @if (session('user', '') != '')
-                    <h4>User</h4>
+                    <h4>{{session('user')}}</h4>
+                    @if (session('user') == 'admin')
+                        <a href="{{ asset('admin') }}"><i class="fas fa-user-cog icon"></i></a>
+                    @endif
+                    <form action="{{ asset('user/logout') }}" method="get">
+                        <button style="border: none; background: none" type="submit"><i class="fas fa-sign-out-alt icon"></i></button>
+                    </form>
                 @else
-                    <a href="{{asset('login')}}"><h4>Вход | Регистрация</h4></a>
+                    <a href="{{ asset('user/login') }}"><h4>Вход</h4></a> 
+                    <a href="{{ asset('user/create') }}"><h4>Регистрация</h4></a>
                 @endif
             </div>
         </div>
