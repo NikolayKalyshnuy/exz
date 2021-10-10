@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::resource('/', \App\Http\Controllers\InstructionController::class);
+Route::resource('/login', \App\Http\Controllers\UserController::class);

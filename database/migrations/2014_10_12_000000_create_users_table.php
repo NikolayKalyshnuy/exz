@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('locked')->default(false);
             $table->timestamps();
         });
-        DB::table('users')->dba_insert(['login'=>'admin', 'password'=>'admin']);
+        DB::table('users')->insert(['login'=>'admin', 'password'=>'admin']);
     }
 
     /**

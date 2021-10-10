@@ -16,7 +16,7 @@ class CreateInstructionsTable extends Migration
         Schema::create('instructions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('description')->default('');
             $table->string('filePath', 255);
             $table->integer('userId')->unsigned();
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
