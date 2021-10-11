@@ -2,8 +2,8 @@
 @section('title', "Вход")
 @section('content')
 <div class="row">
-    {!! Form::model($user, ['action'=>'\App\Http\Controllers\UserController@loginHandler', 'class'=>'col-6']) !!}
-    <div class="form-group">
+    {!! Form::model($user, ['action'=>'\App\Http\Controllers\UserController@loginHandler', 'class'=>'col-4 offset-4']) !!}
+    <div class="form-group ">
         {!! Form::label('login', 'Логин:') !!}
         {!! Form::text('login', '', ['class' => 'form-control']) !!}
     </div>

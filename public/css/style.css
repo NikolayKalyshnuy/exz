@@ -12,7 +12,7 @@ a, a:active {
     color: black;
 }
 
-a:hover {
+a:hover, .nav-btn:hover {
     color: whitesmoke;
 }
 
@@ -42,15 +42,20 @@ iframe {
     padding-top: 10px;
 }
 
+.fas {
+    font-size: large;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: black;
+}
+
 .icon {
     font-size: xx-large;
 }
 
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.nav-btn, .sub {
+    border: none;
+    background: none;
 }

@@ -15,8 +15,8 @@ class InstructionController extends Controller
      */
     public function index()
     {
-        $instructions = Instruction::all();
-        // $instructions = Instruction::query()->where('verified', true)->get();
+        // $instructions = Instruction::all();
+        $instructions = Instruction::query()->where('verified', true)->get();
         $users = User::pluck('login', 'id');
         return view('instruction.index', ['instructions'=>$instructions, 'users'=>$users]);
     }
@@ -29,7 +29,6 @@ class InstructionController extends Controller
     public function create()
     {
         $instruction = new Instruction();
-
         return view('instruction.create', ['instruction'=>$instruction]);
     }
 
@@ -92,7 +91,10 @@ class InstructionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $instruction = Instruction::query()->where('id', $id)->first();
+        $instruction->verified = $request->verified;
+        $instruction->save();
+        return back();
     }
 
     /**
@@ -103,18 +105,16 @@ class InstructionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $instruction = Instruction::query()->where('id', $id)->first();
+        if ($instruction != null)
+            $instruction->delete();
+        return back();
     }
 
     public function search(Request $request)
     {
         $search = $request->searchText;
-        $instructions = Instruction::query()->where('name', 'like', '%'.$search.'%')->get();
-        // $instructions = $instructions->reject(function($instruction) {
-        //     return $instruction->cancelled;
-        // });
-        // foreach($instructions as $instruction)
-        //     echo $instruction->name;
+        $instructions = Instruction::query()->where([['name', 'like', '%'.$search.'%'], ['verified', true]])->get();
         $users = User::pluck('login', 'id');
         return view('instruction.search', ['instructions'=>$instructions, 'users'=>$users, 'search'=>$search]);
     }

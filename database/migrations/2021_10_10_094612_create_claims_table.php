@@ -16,9 +16,9 @@ class CreateClaimsTable extends Migration
         Schema::create('claims', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('instructionId')->unsigned();
-            $table->foreign('instructionId')->references('id')->on('instructions');
+            $table->foreign('instructionId')->references('id')->on('instructions')->onDelete('cascade');
             $table->integer('userId')->unsigned();
-            $table->foreign('userId')->references('id')->on('users');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->string('description');
             $table->timestamps();
         });

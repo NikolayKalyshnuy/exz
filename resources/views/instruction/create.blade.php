@@ -2,7 +2,7 @@
 @section('title', "Добавление инструкции")
 @section('content')
     <div class="row">
-        {!! Form::model($instruction, ['action'=>'\App\Http\Controllers\InstructionController@store', 'class'=>'col-6', "files" => true]) !!}
+        {!! Form::model($instruction, ['action'=>'\App\Http\Controllers\InstructionController@store', 'class'=>'col-6 offset-3', "files" => true]) !!}
         <div class="form-group">
             {!! Form::label('name', 'Название:') !!}
             {!! Form::text('name', '', ['class' => 'form-control']) !!}

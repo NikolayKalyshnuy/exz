@@ -89,6 +89,9 @@ class ClaimController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $claim = Claim::query()->where('id', $id)->first();
+        if ($claim != null)
+            $claim->delete();
+        return back();
     }
 }

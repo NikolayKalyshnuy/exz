@@ -86,7 +86,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::query()->where('id', $id)->first();
+        $user->locked = $request->locked;
+        $user->save();
+        return back();
     }
 
     /**
@@ -97,7 +100,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::query()->where('id', $id)->first();
+        if ($user != null)
+            $user->delete();
+        return back();
     }
 
     public function login()
@@ -127,8 +133,13 @@ class UserController extends Controller
             }
             else
             {
-                session(['user'=>$user->login]);
-                return redirect()->action("\App\Http\Controllers\InstructionController@index");
+                if ($user->locked == false)
+                {
+                    session(['user'=>$user->login]);
+                    return redirect()->action("\App\Http\Controllers\InstructionController@index");
+                }
+                else
+                    return view('user/error', ['message'=>'Ваш аккаунт заблокирован!']);
             }
         }
         return view('user/error', ['message'=>'Пользователя с таким логином не зарегестрированно!']);

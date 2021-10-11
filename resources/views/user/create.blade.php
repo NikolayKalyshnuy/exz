@@ -2,7 +2,7 @@
 @section('title', "Регистрация")
 @section('content')
 <div class="row">
-    {!! Form::model($user, ['action'=>'\App\Http\Controllers\UserController@store', 'class'=>'col-6']) !!}
+    {!! Form::model($user, ['action'=>'\App\Http\Controllers\UserController@store', 'class'=>'col-4 offset-4']) !!}
     <div class="form-group">
         {!! Form::label('login', 'Логин:') !!}
         {!! Form::text('login', '', ['class' => 'form-control']) !!}

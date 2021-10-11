@@ -30,7 +30,7 @@
                         <a href="{{ asset('admin') }}"><i class="fas fa-user-cog icon"></i></a>
                     @endif
                     <form action="{{ asset('user/logout') }}" method="get">
-                        <button style="border: none; background: none" type="submit"><i class="fas fa-sign-out-alt icon"></i></button>
+                        <button class="nav-btn" type="submit"><i class="fas fa-sign-out-alt icon"></i></button>
                     </form>
                 @else
                     <a href="{{ asset('user/login') }}"><h4>Вход</h4></a> 
