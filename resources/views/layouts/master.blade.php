@@ -10,6 +10,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('/css/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <header class="container bg-primary">
