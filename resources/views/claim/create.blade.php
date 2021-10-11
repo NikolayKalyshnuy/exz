@@ -2,9 +2,8 @@
 @section('title', "Пожаловаться")
 @section('content')
 <div class="row">
-    {!! Form::model($claim, ['action'=>'\App\Http\Controllers\ClaimController@store', 'class'=>'col-6']) !!}
+    {!! Form::model($claim, ['action'=>'\App\Http\Controllers\ClaimController@store', 'class'=>'col-6 offset-3']) !!}
     <div class="form-group" hidden>
-        
         {!! Form::text('instructionId', $instructionId, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">

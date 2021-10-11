@@ -9,6 +9,10 @@
     <div class="row">
         <div class="col-12">
             <table cellpadding="4"  cellspacing="0">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
                 <tr class="bg-secondary">
                     <th>Название</th>
                     <th>Описание</th>

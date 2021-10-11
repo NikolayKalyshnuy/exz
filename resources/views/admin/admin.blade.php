@@ -10,6 +10,10 @@
     <div class="row">
         <div class="col-12">
             <table cellpadding="4"  cellspacing="0">
+                <col width="30%">
+                <col width="30%">
+                <col width="30%">
+                <col width="10%">
                 <tr class="bg-secondary">
                     <th>Логин</th>
                     <th>Статус</th>
@@ -62,6 +66,11 @@
     <div class="row">
         <div class="col-12">
             <table cellpadding="5"  cellspacing="0">
+                <col width="25%">
+                <col width="25%">
+                <col width="20%">
+                <col width="20%">
+                <col width="10%">
                 <tr class="bg-secondary">
                     <th>Название</th>
                     <th>Автор</th>
@@ -119,6 +128,10 @@
     <div class="row">
         <div class="col-12">
             <table cellpadding="4"  cellspacing="0">
+                <col width="30%">
+                <col width="30%">
+                <col width="30%">
+                <col width="10%">
                 <tr class="bg-secondary">
                     <th>Инструкция</th>
                     <th>Автор жалобы</th>
