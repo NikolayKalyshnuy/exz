@@ -20,8 +20,7 @@
         <div class="col-12 text-center">
             @if (session('user'))
                 <a class="btn btn-success" href="{{asset($instruction->filePath)}}" download>Скачать</a>
-                {{-- todo --}}
-                <a class="btn btn-warning" href="{{asset($instruction->filePath)}}" >Пожаловаться</a>
+                <a class="btn btn-warning" href="{{route('claim.create', ['instructionId'=>$instruction->id])}}" >Пожаловаться</a>
             @else
                 <h3>Зарегистрируйтесь, чтобы скачать файл</h3>
             @endif

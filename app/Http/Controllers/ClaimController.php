@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Claim;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClaimController extends Controller
@@ -21,9 +23,10 @@ class ClaimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $claim = new Claim();
+        return view('claim.create', ['claim'=>$claim, 'instructionId'=>$request->instructionId]);
     }
 
     /**
@@ -34,7 +37,14 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $claim = new Claim();
+        $request->validate(['description'=>'min:5']);
+        $claim->description = $request->description;
+        $user = User::query()->where('login', session('user'))->first();
+        $claim->userId = $user->id;
+        $claim->instructionId = $request->instructionId;
+        $claim->save();
+        return view('claim.store');
     }
 
     /**

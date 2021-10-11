@@ -18,7 +18,7 @@
                 <a href="{{asset('')}}"><i class="fas fa-home icon"></i></a>
             </div>
             <div class="col-6">
-                <form class="input-group" method="get" action="{{asset('search')}}">
+                <form class="input-group" method="get" action="{{asset('instruction/search')}}">
                     <input class="form-control" required type="search" name="searchText" id="searchText">
                     <input class="btn btn-success" type="submit" value="Поиск">
                 </form>
